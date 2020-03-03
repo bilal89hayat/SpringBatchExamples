@@ -28,7 +28,10 @@ public class LocatorServiceImpl implements LocatorService {
                 .min("locatorTimeList.time").as("minTime")
                 .max("locatorTimeList.time").as("maxTime")
                 .avg("locatorTimeList.time").as("avgTime");
-        Aggregation aggregation = newAggregation(unwind("locatorTimeList"), groupOperation);
+        Aggregation aggregation = newAggregation(
+                                                 unwind("locatorTimeList"),
+                                                 groupOperation
+                                                );
         AggregationResults<?> aggregationResults = mongoTemplate.aggregate(aggregation, "page-locatorcsv", LocatorStrategy.class);
         List<LocatorStrategy> locatorStrategyList = (List<LocatorStrategy>) aggregationResults.getMappedResults();
         locatorRepository.deleteAll();

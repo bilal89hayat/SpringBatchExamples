@@ -63,7 +63,7 @@ public class LoadController {
     }
 
 
-    @GetMapping
+    @GetMapping("/saveToDb")
     public ResponseEntity<?> saveToDb(){
 
         try
